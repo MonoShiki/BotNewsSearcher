@@ -24,9 +24,7 @@ class MySoup:
         for news in list_of_news:
             myimgs = news.find("img")
             if myimgs:
-                date = ""
-                for part_of_date in news.find_all("span"):
-                    date += " " + part_of_date.text.strip()
+                date = " ".join([part_of_date.text.strip() for part_of_date in news.find_all("span")])
                 my_news_dict[myimgs["alt"]] = {
                     "href": self.host + news.find("a")["href"],
                     "img": self.host + myimgs["data-src"],
